@@ -15,28 +15,19 @@ knitr::opts_chunk$set(echo = TRUE)
 La tabla mostrada contiene valores de población, en cientos de miles, de las diez ciudades más pobladas de cuatro países en el año 1967:
 
 
-|Argentina|[]()
-:-------------: | :----:| :----:| :----:| :-----:| :----:|
-|29.66|7.61 |6.35 |4.10 |3.80 |
- 2.75 |2.70 |2.69 |2.51 |2.44 |
- 
-
-|EE.UU|[]()
-:-------------: | :----:| :----:| :----:| :-----:| :----:|
-|77.81|35.50|24.79|20.02|16.70|
- 9.39 |9.38 |8.76 |7.63 |7.50 |
-
-
-|Holanda|[]()
-:-------------: | :----:| :----:| :----:| :-----:| :----:|
-|8.68 |7.31 |6.02 |2.64 |1.75 |
- 1.72 |1.51 |1.42 |1.31 |1.29 |
+|Argentina|EE.UU|Holanda|Japón| 
+|:---------:|:-----:|:-------:|:-----:|
+|29.66|77.81|8.68|110.21|   
+|7.61|35.50|7.31|32.14|
+|6.35|24.79|6.02|18.88|
+|4.10|20.02|2.64|16.38|
+|3.80|16.70|1.75|13.37|
+|2.75|9.39|1.72|11.92|
+|2.70|9.38|1.51|10.71|
+|2.69|8.76|1.42|7.80|
+|2.51|7.63|1.31|7.70|
 
 
-|Japón|[]()
-:-------------: | :----:| :----:| :----:| :-----:| :----:|
-|110.21|32.14|18.88|16.38|13.37|
- 11.92|10.71|7.80 |7.70 |7.00 |
 
 ```{r punto1, echo = FALSE}
 
@@ -82,6 +73,7 @@ boxplot(japon,xlab="Japón",breaks=10,ylab="Valores de población")
 stripchart(japon, vertical = TRUE, method = "jitter",
            pch = 22, add = TRUE, col = "#F54B4B")
 
+paste("Como podemos observar en las 4 graficas todas tienen simetria positiva, ya que la  caja superior es mayor que la caja inferior igualmente mediante el calculo del coeficiente de asimetria por cada pais nos da un valor mayor a cero en cada uno de ellos por lo que se puede concluir que tienen asimetria positiva, Solo Holanda no tiene outliers pero  EE.UU, Japón y Argentina poseen Outliers que son datos que van mas alla de los extremos los cuales hacen que los valores de la media y la desviacion se incrementen.")
 
 
 
