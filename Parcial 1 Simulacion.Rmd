@@ -73,7 +73,19 @@ Avianca se encuentra estudiando la situación de venta de puesto en el vuelo Arm
 
 ```{r punto2, echo = FALSE}
 
+print("P(X=181)")
+print("Se tiene que el promedio de 176.4 personas se presentan a su vuelo.")
 
+q = 181
+lamda = 180*98/100
+propVuelo = 1 - dpois(q, lamda)
+
+paste ("La probabilidad de que se presenten 180 personas o menos, indicando que todos tienen su asiento asegurado es de:", propVuelo)
+
+
+
+plot(0:350, dpois(0:350, lamda), main = expression(paste("Distribución de poisson, ", lambda, "= 176.4"))
+     , xlab = "Pasajeros", ylab = "Probabilidad", pch = 16)
 
 ```
 
@@ -84,6 +96,21 @@ En la planta envasadora de Coca-Cola FEMSA ubicada en Tocancipá se realiza el e
 
 
 ```{r punto3, echo = FALSE}
+
+
+q = 415
+mean = 400
+dE = 5
+
+print("Se tiene una media de 400ml y una desviación promedio de 5ml.")
+
+
+propMl = pnorm(415, 400,5, lower.tail = F)
+
+paste ("El porcentaje de las botellas de gaseosa que son declaradas producto NO CONFORME es:", propMl)
+
+plot(350:450, dnorm(350:450, mean, dE), pch = 16, xlab = "Mililitros (ml)", ylab = "Probabilidad",
+     main="Distribución Normal")
 
 
 ```
