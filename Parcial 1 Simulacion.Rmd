@@ -1,6 +1,6 @@
 ---
 title: "Taller 1 - Simulación"
-author: "Diego Andres riveros Lopez - Juan David Romero Garcia"
+author: "Diego Andres Riveros Lopez - Juan David Romero Garcia"
 date: '2022-03-16'
 output: html_document
 ---
@@ -16,32 +16,41 @@ La tabla mostrada contiene valores de población, en cientos de miles, de las di
 
 
 |Argentina|[]()
-:-------------: | :----:| :----:| :----:| :-----:| :----:| :----:|
-|29.66|7.61|6.35|4.10|3.80|
-2.75|2.70|2.69|2.51|2.44|
+:-------------: | :----:| :----:| :----:| :-----:| :----:|
+|29.66|7.61 |6.35 |4.10 |3.80 |
+ 2.75 |2.70 |2.69 |2.51 |2.44 |
  
 
 |EE.UU|[]()
-:-------------: | :----:| :----:| :----:| :-----:| :----:| :----:|
-|77.81|35.50|24.79|20.02|16.70
-|9.39|9.38|8.76|7.63|7.50|
+:-------------: | :----:| :----:| :----:| :-----:| :----:|
+|77.81|35.50|24.79|20.02|16.70|
+ 9.39 |9.38 |8.76 |7.63 |7.50 |
 
 
 |Holanda|[]()
-:-------------: | :----:| :----:| :----:| :-----:| :----:| :----:|
-|8.68|7.31|6.02|2.64|1.75|
-1.72|1.51|1.42|1.31|1.29|
+:-------------: | :----:| :----:| :----:| :-----:| :----:|
+|8.68 |7.31 |6.02 |2.64 |1.75 |
+ 1.72 |1.51 |1.42 |1.31 |1.29 |
 
 
 |Japón|[]()
-:-------------: | :----:| :----:| :----:| :-----:| :----:| :----:|
+:-------------: | :----:| :----:| :----:| :-----:| :----:|
 |110.21|32.14|18.88|16.38|13.37|
-11.92|10.71|7.80|7.70|7.00|
+ 11.92|10.71|7.80 |7.70 |7.00 |
 
 ```{r punto1, echo = FALSE}
 
-argentina<-c(29.66,7.61,6.35,4.10,3.80,
-2.75,2.70,2.69,2.51,2.44)
+argentina<-c(29.66,7.61,6.35,4.10,3.80,2.75,2.70,2.69,2.51,2.44)
+
+EEUU<-c(77.81,35.50,24.79,20.02,16.70,9.39,9.38,8.76,7.63,7.50)
+
+holanda<-c(8.68,7.31,6.02,2.64,1.75,1.72,1.51,1.42,1.31,1.29)
+
+japon<-c(110.21,32.14,18.88,16.38,13.37,11.92,10.71,7.80,7.70,7.00)
+
+
+
+
 
 
 ```
@@ -50,6 +59,28 @@ argentina<-c(29.66,7.61,6.35,4.10,3.80,
 
 
 ```{r punto1A, echo = FALSE}
+
+par(mfrow=c(1,4))
+
+#Argentina
+boxplot(argentina,xlab="Argentina",breaks=10,ylab="Valores de población")
+stripchart(argentina, vertical = TRUE, method = "jitter",
+           pch = 22, add = TRUE, col = "#F54B4B")
+
+#EEUU
+boxplot(EEUU,xlab="EE.UU",breaks=10,ylab="Valores de población")
+stripchart(EEUU, vertical = TRUE, method = "jitter",
+           pch = 22, add = TRUE, col = "#F54B4B")
+
+#Holanda
+boxplot(holanda,xlab="Holanda",breaks=10,ylab="Valores de población")
+stripchart(holanda, vertical = TRUE, method = "jitter",
+           pch = 22, add = TRUE, col = "#F54B4B")
+
+#Japon
+boxplot(japon,xlab="Japón",breaks=10,ylab="Valores de población")
+stripchart(japon, vertical = TRUE, method = "jitter",
+           pch = 22, add = TRUE, col = "#F54B4B")
 
 
 
@@ -62,10 +93,52 @@ argentina<-c(29.66,7.61,6.35,4.10,3.80,
 
  **B.** Compare los centros de cada población, sus dispersiones y su simetría. ¿Cuál es el país más homogéneamente habitado? ¿Cuáles son las características más sobresalientes? ¿Hay outliers?
  
- ```{r punto1B, echo = FALSE}
- 
+```{r punto1B, echo = FALSE}
+
+
+library(moments)
+par(mfrow=c(1,4))
+
+#Argentina
+
+desvArgentina<-sd(argentina)
+mediaArgentina<-mean(argentina)
+simetriaArgentina<-skewness(argentina)
+paste("Para las 10 ciudades de Argentina tenemos los valores de la media: ",
+      round(mediaArgentina,4)," un valor de desviacion estandar de: ",round(desvArgentina, 4)," y con un coeficiente de simetria de: ",round(simetriaArgentina,4)," por ende tiene una simetria positiva.")
+
+
+#EE.UU
+desvEEUU<-sd(EEUU)
+mediaEEUU<-mean(EEUU)
+simetriaEEUU<-skewness(EEUU)
+paste("Para las 10 ciudades de EE.UU tenemos los valores de la media: ",
+      round(mediaEEUU,4)," un valor de desviacion estandar de: ",round(desvEEUU,4), " y con un coeficiente de simetria de: ",round(simetriaEEUU,4)," por ende tiene una simetria positiva.")
+
+
+#Holanda
+desvHolanda<-sd(holanda)
+mediaHolanda<-mean(holanda)
+simetriaHolanda<-skewness(holanda)
+paste("Para las 10 ciudades de Holanda tenemos los valores de la media: ",
+      round(mediaHolanda,4)," un valor de desviacion estandar de: ",round(desvHolanda,4), " y con un coeficiente de simetria de: ",round(simetriaHolanda,4)," por ende tiene una simetria positiva.")
+
+#Japon
+desvJapon<-sd(japon)
+mediaJapon<-mean(japon)
+simetriaJapon<-skewness(japon)
+paste("Para las 10 ciudades de Japón tenemos los valores de la media: ",
+      round(mediaJapon,4)," un valor de desviacion estandar de: ",round(desvJapon,4), " y con un coeficiente de simetria de: ",round(simetriaJapon,4)," por ende tiene una simetria positiva.")
+
+
+paste("Tomando en cuenta que calculamos el coeficiente de asimetria de los paises y mientras mas cercano a cero sea dicho valor, se entiende que sus valores tienden a estar mas concntrados.
+      por lo anterior el pais mas homogeneamente habitado es Holanda, contando con un valor de la media de: ",round(mediaHolanda,4), " un valor de desviacion de: ",round(desvHolanda,4)," y con un coeficiente de asimetria de: ",round(simetriaHolanda,4))
+
+
+paste("Se caracteriza Holanda por no tener outliers, por tener el 40% de los datos en el primer cuartil, por tener una asimetria positiva ya que vemos que la caja superior es mas grande que la caja inferior, tambien se comprobo mediante el calculo del coeficiente de asimetria de Holanda que al ser mayor a 0 se puede decir que se tiene una asimetria positiva.")
 
 ``` 
+
  
 ### **EJERCICIO 2°**
 
